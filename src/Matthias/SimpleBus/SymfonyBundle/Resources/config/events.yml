@@ -7,7 +7,7 @@ services:
         alias: matthias_simple_bus.delegating_event_handler
 
     matthias_simple_bus.delegating_event_handler:
-        class: Matthias\SimpleBus\Event\DelegatingEventHandler
+        class: Matthias\SimpleBus\Event\DelegatesToEventHandlers
         public: false
         arguments:
             - @service_container
