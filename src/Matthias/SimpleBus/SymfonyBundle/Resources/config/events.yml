@@ -1,0 +1,28 @@
+services:
+    # override this alias to use a more meaningful EventProviderCollector
+    matthias_simple_bus.event_provider_collector:
+        alias: matthias_simple_bus.no_event_providers
+
+    event_handler:
+        alias: matthias_simple_bus.delegating_event_handler
+
+    matthias_simple_bus.delegating_event_handler:
+        class: Matthias\SimpleBus\Event\DelegatingEventHandler
+        public: false
+        arguments:
+            - @service_container
+            # collection of event handler services, will be populated using RegisterHandlerPass
+            - []
+
+    matthias_simple_bus.no_event_providers:
+        class: Matthias\SimpleBus\Event\HasNoEventProviders
+        public: false
+
+    matthias_simple_bus.event_dispatching_command_bus:
+        class: Matthias\SimpleBus\Event\DispatchesEvents
+        public: false
+        arguments:
+            - @matthias_simple_bus.event_provider_collector
+            - @matthias_simple_bus.delegating_event_handler
+        tags:
+            - { name: command_bus, priority: 200 }

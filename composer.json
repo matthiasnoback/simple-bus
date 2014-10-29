@@ -1,0 +1,32 @@
+{
+    "name": "matthiasnoback/simple-bus",
+    "type": "library",
+    "description": "A simple command bus and event handler implementation for Symfony and Doctrine ORM",
+    "keywords": ["symfony2", "command", "event"],
+    "homepage": "http://github.com/matthiasnoback/simple-bus",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthias Noback",
+            "email": "matthiasnoback@gmail.com",
+            "homepage": "http://php-and-symfony.matthiasnoback.nl"
+        }
+    ],
+    "require": {
+        "symfony/http-kernel": "~2.3",
+        "symfony/dependency-injection": "~2.3",
+        "symfony/yaml": "~2.3",
+        "beberlei/assert": "~2.0",
+        "doctrine/orm": "~2.3",
+        "doctrine/doctrine-bundle": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4" : { "Matthias\\SimpleBus\\" : "src/Matthias/SimpleBus" }
+    },
+    "autoload-dev": {
+        "psr-4" : { "Matthias\\SimpleBus\\Tests\\" : "tests/Matthias/SimpleBus/Tests" }
+    }
+}

@@ -1,0 +1,13 @@
+services:
+    command_bus:
+        class: Matthias\SimpleBus\Command\ForwardsToNext
+
+    matthias_simple_bus.delegating_command_bus:
+        class: Matthias\SimpleBus\Command\DelegatesToCommandHandlers
+        public: false
+        arguments:
+            - @service_container
+            # collection of command handler services, will be populated using RegisterHandlerPass
+            - []
+        tags:
+            - { name: command_bus, priority: -1000 }

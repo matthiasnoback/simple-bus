@@ -1,0 +1,48 @@
+services:
+    annotation_reader:
+        class: Doctrine\Common\Annotations\AnnotationReader
+
+    test_command_handler:
+        class: Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\TestCommandHandler
+        arguments:
+            - @doctrine.orm.default_entity_manager
+        tags:
+            - { name: command_handler, handles: test_command }
+
+    some_other_test_command_handler:
+        class: Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\SomeOtherTestCommandHandler
+        arguments:
+            - @event_handler
+        tags:
+            - { name: command_handler, handles: some_other_test_command }
+
+    test_event_handler:
+        class: Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\TestEntityCreatedEventHandler
+        tags:
+            - { name: event_handler, handles: test_entity_created }
+        arguments:
+            - @command_bus
+
+    some_other_event_handler:
+        class: Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\SomeOtherEventHandler
+        tags:
+            - { name: event_handler, handles: test_entity_created }
+        arguments:
+            - @command_bus
+
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        path: :memory:
+        memory: true
+    orm:
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    test:
+                        type: annotation
+                        dir: "%kernel.root_dir%/Entity/"
+                        prefix: Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\Entity
+                        alias: Test
+                        is_bundle: false

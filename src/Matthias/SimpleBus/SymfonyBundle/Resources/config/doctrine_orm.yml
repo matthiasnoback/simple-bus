@@ -1,0 +1,24 @@
+services:
+    # override this alias to use a different entity manager
+    matthias_simple_bus.doctrine_orm.entity_manager:
+        alias: doctrine.orm.entity_manager
+        public: false
+
+    # collects entities that implement EventProvider after EntityManager::flush()
+    matthias_simple_bus.event_provider_collector:
+        alias: matthias_simple_bus.doctrine_orm.event_providing_entities_collector
+        public: false
+
+    matthias_simple_bus.doctrine_orm.transactional_command_bus:
+        class: Matthias\SimpleBus\DoctrineORM\WrapsNextCommandInTransaction
+        public: false
+        arguments:
+            - @matthias_simple_bus.doctrine_orm.entity_manager
+        tags:
+            - { name: command_bus, priority: 100 }
+
+    matthias_simple_bus.doctrine_orm.event_providing_entities_collector:
+        class: Matthias\SimpleBus\DoctrineORM\CollectsEventProvidingEntities
+        public: false
+        tags:
+            - { name: doctrine.event_subscriber }
