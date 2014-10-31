@@ -3,9 +3,9 @@
 namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use Matthias\SimpleBus\SymfonyBundle\CommandBusBundle;
-use Matthias\SimpleBus\SymfonyBundle\DoctrineOrmEventBusBridgeBundle;
-use Matthias\SimpleBus\SymfonyBundle\EventBusBundle;
+use Matthias\SimpleBus\SymfonyBundle\MatthiasCommandBusBundle;
+use Matthias\SimpleBus\SymfonyBundle\MatthiasDoctrineOrmEventBusBridgeBundle;
+use Matthias\SimpleBus\SymfonyBundle\MatthiasEventBusBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -25,9 +25,9 @@ class TestKernel extends Kernel
     {
         return array(
             new DoctrineBundle(),
-            new CommandBusBundle(),
-            new EventBusBundle(),
-            new DoctrineOrmEventBusBridgeBundle()
+            new MatthiasCommandBusBundle(),
+            new MatthiasEventBusBundle(),
+            new MatthiasDoctrineOrmEventBusBridgeBundle()
         );
     }
 

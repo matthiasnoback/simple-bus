@@ -17,9 +17,9 @@ to configure the services manually.
 
 In case you do use Symfony, just enable the Symfony bundles you need in your Symfony project:
 
-- `CommandBusBundle` to enable basic command bus functionality
-- `EventBusBundle` to enable basic event bus functionality (requires `CommandBusBundle` to be enabled too)
-- `DoctrineOrmEventBusBridgeBundle` to enable the Doctrine ORM bridge (requires `CommandBusBundle` and `EventBusBundle` to be enabled)
+- `MatthiasCommandBusBundle` to enable basic command bus functionality
+- `MatthiasEventBusBundle` to enable basic event bus functionality (requires `MatthiasCommandBusBundle` to be enabled too)
+- `MatthiasDoctrineOrmEventBusBridgeBundle` to enable the Doctrine ORM bridge (requires `MatthiasCommandBusBundle` and `MatthiasEventBusBundle` to be enabled)
 
 ### Using the command bus
 

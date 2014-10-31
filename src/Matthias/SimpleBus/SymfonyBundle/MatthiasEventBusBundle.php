@@ -9,11 +9,18 @@ use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\EventBusExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class EventBusBundle extends Bundle
+class MatthiasEventBusBundle extends Bundle
 {
+    use RequiresOtherBundles;
+
+    protected function requires()
+    {
+        return array('MatthiasCommandBusBundle');
+    }
+
     public function build(ContainerBuilder $container)
     {
-        // TODO check if CommandBusBundle is enabled
+        $this->checkRequirements(array('MatthiasCommandBusBundle'), $container);
 
         $container->addCompilerPass(
             new ConfigureBuses(
