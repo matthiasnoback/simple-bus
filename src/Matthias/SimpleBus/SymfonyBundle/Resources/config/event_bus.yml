@@ -1,7 +1,4 @@
 services:
-    event_bus:
-        class: Matthias\SimpleBus\Event\ForwardsToNext
-
     matthias_event_bus.events.finishes_event_before_handling_next:
         class: Matthias\SimpleBus\Event\FinishesEventBeforeHandlingNext
         public: false

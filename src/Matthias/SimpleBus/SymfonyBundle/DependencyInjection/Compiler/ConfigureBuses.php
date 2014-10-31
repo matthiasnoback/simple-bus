@@ -19,20 +19,29 @@ class ConfigureBuses implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        $orderedBusIds = new \SplPriorityQueue();
+        $busIds = new \SplPriorityQueue();
 
         foreach ($container->findTaggedServiceIds($this->busTag) as $specializedBusId => $tags) {
             foreach ($tags as $tagAttributes) {
                 $priority = isset($tagAttributes['priority']) ? $tagAttributes['priority'] : 0;
-                $orderedBusIds->insert($specializedBusId, $priority);
+                $busIds->insert($specializedBusId, $priority);
             }
         }
 
-        $previousBusId = $this->mainBusId;
-        foreach ($orderedBusIds as $specializedBusId) {
-            $definition = $container->findDefinition($previousBusId);
-            $definition->addMethodCall('setNext', array(new Reference($specializedBusId)));
-            $previousBusId = $specializedBusId;
+        $orderedBusIds = iterator_to_array($busIds, false);
+        $numberOfBuses = count($orderedBusIds);
+
+        if ($numberOfBuses === 0) {
+            return;
         }
+
+        for ($i = 0; $i < $numberOfBuses - 1; $i++) {
+            $busId = $orderedBusIds[$i];
+            $nextBusId = $orderedBusIds[$i + 1];
+            $definition = $container->findDefinition($busId);
+            $definition->addMethodCall('setNext', array(new Reference($nextBusId)));
+        }
+
+        $container->setAlias($this->mainBusId, reset($orderedBusIds));
     }
 }

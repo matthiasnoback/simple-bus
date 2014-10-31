@@ -1,9 +1,6 @@
 <?php
 
-namespace Matthias\SimpleBus\Tests\Event;
-
-use Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviderCollectors;
-use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
+namespace Matthias\SimpleBus\Tests\Event\Provider;
 
 class AggregatesMultipleEventProviderCollectorsTest extends \PHPUnit_Framework_TestCase
 {

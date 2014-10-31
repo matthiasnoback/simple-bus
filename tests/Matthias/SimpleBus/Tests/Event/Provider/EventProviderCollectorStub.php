@@ -1,6 +1,6 @@
 <?php
 
-namespace Matthias\SimpleBus\Tests\Event;
+namespace Matthias\SimpleBus\Tests\Event\Provider;
 
 use Matthias\SimpleBus\Event\Provider\CollectsEventProviders;
 
