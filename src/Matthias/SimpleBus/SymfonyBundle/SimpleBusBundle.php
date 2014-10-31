@@ -2,7 +2,7 @@
 
 namespace Matthias\SimpleBus\SymfonyBundle;
 
-use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\ConfigureCommandBuses;
+use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\ConfigureBuses;
 use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\SimpleBusExtension;
 use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\RegisterHandlers;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -36,9 +36,16 @@ class SimpleBusBundle extends Bundle
         );
 
         $container->addCompilerPass(
-            new ConfigureCommandBuses(
+            new ConfigureBuses(
                 'command_bus',
                 'command_bus'
+            )
+        );
+
+        $container->addCompilerPass(
+            new ConfigureBuses(
+                'event_bus',
+                'event_bus'
             )
         );
     }

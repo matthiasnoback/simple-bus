@@ -4,9 +4,9 @@ namespace Matthias\SimpleBus\Event;
 
 use Matthias\SimpleBus\Command\Command;
 use Matthias\SimpleBus\Command\CommandBus;
-use Matthias\SimpleBus\Command\RemembersNext;
+use Matthias\SimpleBus\Command\RemembersNext as CommandBusRemembersNext;
 
-class DispatchesEvents extends RemembersNext implements CommandBus
+class DispatchesEvents extends CommandBusRemembersNext implements CommandBus
 {
     private $collector;
     private $eventHandler;

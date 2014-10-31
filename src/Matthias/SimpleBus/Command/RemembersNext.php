@@ -11,7 +11,7 @@ abstract class RemembersNext implements CommandBus
         $this->next = $commandBus;
     }
 
-    public function next(Command $command)
+    protected function next(Command $command)
     {
         if ($this->next instanceof CommandBus) {
             $this->next->handle($command);

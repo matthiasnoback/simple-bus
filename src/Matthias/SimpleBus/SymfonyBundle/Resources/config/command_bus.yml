@@ -1,6 +1,6 @@
 services:
     command_bus:
-        alias: matthias_simple_bus.finishes_command_before_handling_next
+        class: Matthias\SimpleBus\Command\ForwardsToNext
 
     matthias_simple_bus.delegating_command_bus:
         class: Matthias\SimpleBus\Command\DelegatesToCommandHandlers
