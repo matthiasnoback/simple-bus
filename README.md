@@ -2,7 +2,7 @@
 
 By Matthias Noback
 
-**Warning: this is just for educational purposes, I don't expect it to be reliable in a production environment**
+**Warning: this has not been used in a production environment. Still, it should be good to use. If you don't think it is, please [create an issue](https://github.com/matthiasnoback/simple-bus/issues)**
 
 ## Installation
 
