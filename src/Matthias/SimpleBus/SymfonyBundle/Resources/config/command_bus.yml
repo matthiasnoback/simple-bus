@@ -1,6 +1,6 @@
 services:
     command_bus:
-        class: Matthias\SimpleBus\Command\ForwardsToNext
+        alias: matthias_simple_bus.finishes_command_before_handling_next
 
     matthias_simple_bus.delegating_command_bus:
         class: Matthias\SimpleBus\Command\DelegatesToCommandHandlers
@@ -11,3 +11,9 @@ services:
             - []
         tags:
             - { name: command_bus, priority: -1000 }
+
+    matthias_simple_bus.finishes_command_before_handling_next:
+        class: Matthias\SimpleBus\Command\FinishesCommandBeforeHandlingNext
+        public: false
+        tags:
+            - { name: command_bus, priority: 1000 }
