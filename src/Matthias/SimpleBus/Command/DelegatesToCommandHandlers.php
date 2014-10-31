@@ -4,7 +4,6 @@ namespace Matthias\SimpleBus\Command;
 
 use Assert\Assertion;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Matthias\SimpleBus\Command\CommandHandler;
 
 class DelegatesToCommandHandlers extends RemembersNext implements CommandBus
 {
@@ -19,6 +18,21 @@ class DelegatesToCommandHandlers extends RemembersNext implements CommandBus
 
     public function handle(Command $command)
     {
+        $this->resolveCommandHandler($command)->handle($command);
+
+        $this->next($command);
+    }
+
+    private function resolveCommandHandler(Command $command)
+    {
+        Assertion::string(
+            $command->name(),
+            sprintf(
+                '%s::name() should return a string',
+                get_class($command)
+            )
+        );
+
         if (!isset($this->commandHandlers[$command->name()])) {
             throw new \InvalidArgumentException(
                 sprintf(
@@ -31,8 +45,6 @@ class DelegatesToCommandHandlers extends RemembersNext implements CommandBus
         $commandHandler = $this->container->get($this->commandHandlers[$command->name()]);
         Assertion::isInstanceOf($commandHandler, CommandHandler::class);
 
-        $commandHandler->handle($command);
-
-        $this->next($command);
+        return $commandHandler;
     }
 }

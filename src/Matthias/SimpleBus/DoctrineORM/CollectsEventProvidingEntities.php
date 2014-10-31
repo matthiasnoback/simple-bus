@@ -5,8 +5,8 @@ namespace Matthias\SimpleBus\DoctrineORM;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Matthias\SimpleBus\Event\CollectsEventProviders;
-use Matthias\SimpleBus\Event\ProvidesEvents;
+use Matthias\SimpleBus\Event\Provider\CollectsEventProviders;
+use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
 
 class CollectsEventProvidingEntities implements EventSubscriber, CollectsEventProviders
 {

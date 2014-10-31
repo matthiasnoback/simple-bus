@@ -2,7 +2,7 @@ services:
     command_bus:
         class: Matthias\SimpleBus\Command\ForwardsToNext
 
-    matthias_simple_bus.delegating_command_bus:
+    matthias_command_bus.delegating_command_bus:
         class: Matthias\SimpleBus\Command\DelegatesToCommandHandlers
         public: false
         arguments:
@@ -12,7 +12,7 @@ services:
         tags:
             - { name: command_bus, priority: -1000 }
 
-    matthias_simple_bus.finishes_command_before_handling_next:
+    matthias_command_bus.finishes_command_before_handling_next:
         class: Matthias\SimpleBus\Command\FinishesCommandBeforeHandlingNext
         public: false
         tags:

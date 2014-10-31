@@ -2,7 +2,7 @@
 
 namespace Matthias\SimpleBus\Tests\Event;
 
-use Matthias\SimpleBus\Event\CollectsEventProviders;
+use Matthias\SimpleBus\Event\Provider\CollectsEventProviders;
 
 class EventProviderCollectorStub implements CollectsEventProviders
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Matthias\SimpleBus\Event;
+namespace Matthias\SimpleBus\Event\Provider;
 
 use Assert\Assertion;
 
@@ -26,7 +26,6 @@ class AggregatesMultipleEventProviderCollectors implements CollectsEventProvider
         $collectedEventProviders = array();
 
         foreach ($this->eventProviderCollectors as $collector) {
-
             $collectedEventProviders = array_merge($collectedEventProviders, $collector->collectedEventProviders());
         }
 

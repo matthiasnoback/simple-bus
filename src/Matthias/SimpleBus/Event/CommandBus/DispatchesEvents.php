@@ -1,10 +1,12 @@
 <?php
 
-namespace Matthias\SimpleBus\Event;
+namespace Matthias\SimpleBus\Event\CommandBus;
 
 use Matthias\SimpleBus\Command\Command;
 use Matthias\SimpleBus\Command\CommandBus;
 use Matthias\SimpleBus\Command\RemembersNext as CommandBusRemembersNext;
+use Matthias\SimpleBus\Event\EventBus;
+use Matthias\SimpleBus\Event\Provider\CollectsEventProviders;
 
 class DispatchesEvents extends CommandBusRemembersNext implements CommandBus
 {
@@ -22,7 +24,6 @@ class DispatchesEvents extends CommandBusRemembersNext implements CommandBus
         $this->next($command);
 
         foreach ($this->collector->collectedEventProviders() as $eventProvider) {
-            /** @var ProvidesEvents $eventProvider */
             foreach ($eventProvider->releaseEvents() as $event) {
                 $this->eventBus->handle($event);
             }

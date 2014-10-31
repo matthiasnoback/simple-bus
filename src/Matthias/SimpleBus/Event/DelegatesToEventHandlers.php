@@ -8,26 +8,42 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class DelegatesToEventHandlers extends RemembersNext implements EventBus
 {
     private $container;
-    private $handlersByEventName;
+    private $handlerIdsByEventName;
 
-    public function __construct(ContainerInterface $container, array $handlersByEventName = array())
+    public function __construct(ContainerInterface $container, array $handlerIdsByEventName = array())
     {
-        $this->handlersByEventName = $handlersByEventName;
         $this->container = $container;
+        $this->handlerIdsByEventName = $handlerIdsByEventName;
     }
 
     public function handle(Event $event)
     {
-        if (!isset($this->handlersByEventName[$event->name()])) {
-            return;
-        }
+        $eventHandlers = $this->resolveEventHandlers($event);
 
-        foreach ($this->handlersByEventName[$event->name()] as $eventHandlerId) {
-            $eventHandler = $this->container->get($eventHandlerId);
-            Assertion::isInstanceOf($eventHandler, EventHandler::class);
+        array_walk(
+            $eventHandlers,
+            function (EventHandler $eventHandler) use ($event) {
+                $eventHandler->handle($event);
+            }
+        );
+    }
 
-            /** @var EventHandler $eventHandler */
-            $eventHandler->handle($event);
-        }
+    private function resolveEventHandlers(Event $event)
+    {
+        return array_map(
+            function ($eventHandlerId) {
+                $eventHandler = $this->container->get($eventHandlerId);
+
+                Assertion::isInstanceOf($eventHandler, EventHandler::class);
+
+                return $eventHandler;
+            },
+            $this->handlerIdsByEventName($event->name())
+        );
+    }
+
+    private function handlerIdsByEventName($name)
+    {
+        return isset($this->handlerIdsByEventName[$name]) ? $this->handlerIdsByEventName[$name] : array();
     }
 }

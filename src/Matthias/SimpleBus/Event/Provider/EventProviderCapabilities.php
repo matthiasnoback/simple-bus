@@ -1,6 +1,8 @@
 <?php
 
-namespace Matthias\SimpleBus\Event;
+namespace Matthias\SimpleBus\Event\Provider;
+
+use Matthias\SimpleBus\Event\Event;
 
 trait EventProviderCapabilities
 {

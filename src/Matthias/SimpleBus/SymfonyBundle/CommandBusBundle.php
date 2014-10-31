@@ -20,7 +20,7 @@ class CommandBusBundle extends Bundle
 
         $container->addCompilerPass(
             new RegisterHandlers(
-                'matthias_simple_bus.delegating_command_bus',
+                'matthias_command_bus.delegating_command_bus',
                 'command_handler',
                 'handles',
                 false
