@@ -1,9 +1,9 @@
 <?php
 
-namespace Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest;
+namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Matthias\SimpleBus\Event\Event;
-use Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\Entity\TestEntity;
+use Matthias\SimpleBus\Tests\Functional\SmokeTest\Entity\TestEntity;
 
 class TestEntityCreated implements Event
 {

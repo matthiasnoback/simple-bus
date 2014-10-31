@@ -1,6 +1,6 @@
 <?php
 
-namespace Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest;
+namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Matthias\SimpleBus\Event\Event;
 

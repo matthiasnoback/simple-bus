@@ -22,3 +22,4 @@ services:
         public: false
         tags:
             - { name: doctrine.event_subscriber }
+            - { name: event_provider_collector }

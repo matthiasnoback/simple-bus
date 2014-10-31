@@ -1,0 +1,32 @@
+services:
+    event_bus:
+        class: Matthias\SimpleBus\Event\ForwardsToNext
+
+    matthias_event_bus.events.finishes_event_before_handling_next:
+        class: Matthias\SimpleBus\Event\FinishesEventBeforeHandlingNext
+        public: false
+
+    matthias_event_bus.aggregates_multiple_event_provider_collectors:
+        class: Matthias\SimpleBus\Event\AggregatesMultipleEventProviderCollectors
+        arguments:
+            # collection of CollectsEventProviders, will be populated using RegisterEventProviderCollectors
+            - []
+
+    matthias_event_bus.delegating_event_handler:
+        class: Matthias\SimpleBus\Event\DelegatesToEventHandlers
+        public: false
+        arguments:
+            - @service_container
+            # collection of event handler services, will be populated using RegisterHandlers
+            - []
+        tags:
+            - { name: event_bus }
+
+    matthias_event_bus.event_dispatching_command_bus:
+        class: Matthias\SimpleBus\Event\DispatchesEvents
+        public: false
+        arguments:
+            - @matthias_event_bus.aggregates_multiple_event_provider_collectors
+            - @matthias_event_bus.delegating_event_handler
+        tags:
+            - { name: command_bus, priority: 200 }

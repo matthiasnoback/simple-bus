@@ -1,9 +1,11 @@
 <?php
 
-namespace Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest;
+namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use Matthias\SimpleBus\SymfonyBundle\SimpleBusBundle;
+use Matthias\SimpleBus\SymfonyBundle\CommandBusBundle;
+use Matthias\SimpleBus\SymfonyBundle\DoctrineOrmBridgeBundle;
+use Matthias\SimpleBus\SymfonyBundle\EventBusBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -23,7 +25,9 @@ class TestKernel extends Kernel
     {
         return array(
             new DoctrineBundle(),
-            new SimpleBusBundle()
+            new CommandBusBundle(),
+            new EventBusBundle(),
+            new DoctrineOrmBridgeBundle()
         );
     }
 

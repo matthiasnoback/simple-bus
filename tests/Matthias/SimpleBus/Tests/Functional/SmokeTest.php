@@ -4,11 +4,11 @@ namespace Matthias\SimpleBus\Tests\Functional;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\TestCommand;
-use Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\TestKernel;
+use Matthias\SimpleBus\Tests\Functional\SmokeTest\TestCommand;
+use Matthias\SimpleBus\Tests\Functional\SmokeTest\TestKernel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class SimpleBusBundleTest extends \PHPUnit_Framework_TestCase
+class SmokeTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

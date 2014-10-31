@@ -7,13 +7,17 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
-class SimpleBusExtension extends Extension
+class CommandBusExtension extends Extension
 {
+    public function getAlias()
+    {
+        return 'command_bus';
+    }
+
     public function load(array $config, ContainerBuilder $container)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+
         $loader->load('command_bus.yml');
-        $loader->load('events.yml');
-        $loader->load('doctrine_orm.yml');
     }
 }

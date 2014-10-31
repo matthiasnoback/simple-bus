@@ -9,12 +9,12 @@ use Matthias\SimpleBus\Command\RemembersNext as CommandBusRemembersNext;
 class DispatchesEvents extends CommandBusRemembersNext implements CommandBus
 {
     private $collector;
-    private $eventHandler;
+    private $eventBus;
 
-    public function __construct(CollectsEventProviders $collector, EventHandler $eventHandler)
+    public function __construct(CollectsEventProviders $eventProviderCollector, EventBus $eventBus)
     {
-        $this->collector = $collector;
-        $this->eventHandler = $eventHandler;
+        $this->collector = $eventProviderCollector;
+        $this->eventBus = $eventBus;
     }
 
     public function handle(Command $command)
@@ -22,8 +22,9 @@ class DispatchesEvents extends CommandBusRemembersNext implements CommandBus
         $this->next($command);
 
         foreach ($this->collector->collectedEventProviders() as $eventProvider) {
+            /** @var ProvidesEvents $eventProvider */
             foreach ($eventProvider->releaseEvents() as $event) {
-                $this->eventHandler->handle($event);
+                $this->eventBus->handle($event);
             }
         }
     }

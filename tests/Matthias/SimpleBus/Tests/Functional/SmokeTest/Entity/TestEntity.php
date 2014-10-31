@@ -1,11 +1,11 @@
 <?php
 
-namespace Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\Entity;
+namespace Matthias\SimpleBus\Tests\Functional\SmokeTest\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Matthias\SimpleBus\Event\ProvidesEvents;
 use Matthias\SimpleBus\Event\EventProviderCapabilities;
-use Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest\TestEntityCreated;
+use Matthias\SimpleBus\Tests\Functional\SmokeTest\TestEntityCreated;
 
 /**
  * @ORM\Entity

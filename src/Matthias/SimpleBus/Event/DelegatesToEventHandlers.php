@@ -5,7 +5,7 @@ namespace Matthias\SimpleBus\Event;
 use Assert\Assertion;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class DelegatesToEventHandlers implements EventHandler
+class DelegatesToEventHandlers extends RemembersNext implements EventBus
 {
     private $container;
     private $handlersByEventName;
