@@ -15,7 +15,11 @@ Using Composer:
 This library is created with Symfony and Doctrine ORM in mind, but you can use it in any kind of project. You just have
 to configure the services manually.
 
-In case you do use Symfony, just enable the Symfony bundle in your Symfony project (`Matthias\Simplebus\SymfonyBundle\SimpleBusBundle`).
+In case you do use Symfony, just enable the Symfony bundles you need in your Symfony project:
+
+- `CommandBusBundle` to enable basic command bus functionality
+- `EventBusBundle` to enable basic event bus functionality (requires `CommandBusBundle` to be enabled too)
+- `DoctrineOrmEventBusBridgeBundle` to enable the Doctrine ORM bridge (requires `CommandBusBundle` and `EventBusBundle` to be enabled)
 
 ### Using the command bus
 
@@ -98,8 +102,8 @@ Entities that were involved in the transaction will be asked to release their ev
 namespace Matthias\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Matthias\SimpleBus\Event\ProvidesEvents;
-use Matthias\SimpleBus\Event\EventProviderCapabilities;
+use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
+use Matthias\SimpleBus\Event\Provider\EventProviderCapabilities;
 use Matthias\App\Event\TestEntityCreated;
 
 /**
@@ -187,3 +191,25 @@ Register the event handler using a service tag:
 ```
 
 Make sure the value of the `handles`  attribute is the same as the value returned by `Event::name()`.
+
+You can also use t
+
+## Extension points
+
+### Custom command buses
+
+It's possible to wrap command buses and add functionality before or after calling the "next" command bus to handle a command. Use the service tag `command_bus` and optionally extend the `RemembersNext` command bus.
+
+- Handle commands asynchronously (for better performance)
+- Log commands (for debugging)
+- Dispatch Symfony events before and after handling a command
+
+### Custom event buses
+
+It's possible to wrap event buses and add functionality before or after calling the "next" event bus to handle an event. Use the service tag `event_bus` and optionally extend the `RemembersNext` event bus.
+
+Just some ideas for custom event buses:
+
+- Store events (which will be DDD-CQRS-cool!)
+- Handle events asynchronously (for better performance)
+- Log events (for debugging)
