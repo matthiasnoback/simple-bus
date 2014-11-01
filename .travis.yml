@@ -1,0 +1,8 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+
+notifications:
+  email: matthiasnoback@gmail.com
