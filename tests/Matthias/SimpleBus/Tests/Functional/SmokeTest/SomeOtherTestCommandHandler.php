@@ -5,7 +5,6 @@ namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 use Matthias\SimpleBus\Command\Command;
 use Matthias\SimpleBus\Command\CommandHandler;
 use Matthias\SimpleBus\Event\EventBus;
-use Matthias\SimpleBus\Event\EventHandler;
 
 class SomeOtherTestCommandHandler implements CommandHandler
 {

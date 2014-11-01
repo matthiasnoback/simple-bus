@@ -3,8 +3,8 @@
 namespace Matthias\SimpleBus\Tests\Functional\SmokeTest\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
 use Matthias\SimpleBus\Event\Provider\EventProviderCapabilities;
+use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
 use Matthias\SimpleBus\Tests\Functional\SmokeTest\TestEntityCreated;
 
 /**
@@ -12,7 +12,7 @@ use Matthias\SimpleBus\Tests\Functional\SmokeTest\TestEntityCreated;
  */
 class TestEntity implements ProvidesEvents
 {
-    use \Matthias\SimpleBus\Event\Provider\EventProviderCapabilities;
+    use EventProviderCapabilities;
 
     /**
      * @ORM\Id

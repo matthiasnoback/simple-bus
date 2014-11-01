@@ -2,6 +2,8 @@
 
 namespace Matthias\SimpleBus\Tests\Event\Provider;
 
+use Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviderCollectors;
+
 class AggregatesMultipleEventProviderCollectorsTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -12,7 +14,7 @@ class AggregatesMultipleEventProviderCollectorsTest extends \PHPUnit_Framework_T
         $eventProvider1 = $this->createDummyEventProvider();
         $eventProvider2 = $this->createDummyEventProvider();
 
-        $aggregator = new \Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviderCollectors(
+        $aggregator = new AggregatesMultipleEventProviderCollectors(
             array(
                 new EventProviderCollectorStub(array($eventProvider1)),
                 new EventProviderCollectorStub(array($eventProvider2))
@@ -30,6 +32,6 @@ class AggregatesMultipleEventProviderCollectorsTest extends \PHPUnit_Framework_T
 
     private function createDummyEventProvider()
     {
-        return $this->getMock(\Matthias\SimpleBus\Event\Provider\ProvidesEvents::class);
+        return $this->getMock('Matthias\SimpleBus\Event\Provider\ProvidesEvents');
     }
 }

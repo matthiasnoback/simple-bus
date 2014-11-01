@@ -11,7 +11,7 @@ class FinishesCommandBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
     /** @var FinishesCommandBeforeHandlingNext */
     private $commandBus;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    /** @var \PHPUnit_Framework_MockObject_MockObject|CommandBus */
     private $next;
 
     protected function setUp()
@@ -46,15 +46,17 @@ class FinishesCommandBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 
         $orderOfEvents = array();
 
+        $commandBus = $this->commandBus;
+
         $this->next
             ->expects($this->any())
             ->method('handle')
             ->will(
                 $this->returnCallback(
-                    function ($command) use ($commandTriggeredByOriginalCommand, &$orderOfEvents) {
+                    function ($command) use ($commandBus, $commandTriggeredByOriginalCommand, &$orderOfEvents) {
                         $orderOfEvents[] = $command;
                         if ($command !== $commandTriggeredByOriginalCommand) {
-                            $this->commandBus->handle($commandTriggeredByOriginalCommand);
+                            $commandBus->handle($commandTriggeredByOriginalCommand);
                             $orderOfEvents[] = 'finished handling original command';
                         }
                     }
@@ -75,11 +77,14 @@ class FinishesCommandBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 
     private function mockCommandBus()
     {
-        return $this->getMock(CommandBus::class);
+        return $this->getMock('Matthias\SimpleBus\Command\CommandBus');
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|Command
+     */
     private function dummyCommand()
     {
-        return $this->getMock(Command::class);
+        return $this->getMock('Matthias\SimpleBus\Command\Command');
     }
 }
