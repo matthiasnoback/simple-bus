@@ -17,9 +17,11 @@ class WrapsNextCommandInTransaction extends RemembersNext
 
     public function handle(Command $command)
     {
+        $commandBus = $this;
+
         $this->entityManager->transactional(
-            function () use ($command) {
-                $this->next($command);
+            function () use ($commandBus, $command) {
+                $commandBus->next($command);
             }
         );
     }

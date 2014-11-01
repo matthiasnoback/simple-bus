@@ -13,7 +13,7 @@ class AggregatesMultipleEventProviderCollectors implements CollectsEventProvider
     {
         Assertion::allIsInstanceOf(
             $eventProviderCollectors,
-            CollectsEventProviders::class,
+            'Matthias\SimpleBus\Event\Provider\CollectsEventProviders',
             'Expected an array of CollectsEventProviders instances',
             null
         );

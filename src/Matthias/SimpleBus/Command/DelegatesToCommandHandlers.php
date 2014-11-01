@@ -43,7 +43,10 @@ class DelegatesToCommandHandlers extends RemembersNext implements CommandBus
         }
 
         $commandHandler = $this->container->get($this->commandHandlers[$command->name()]);
-        Assertion::isInstanceOf($commandHandler, CommandHandler::class);
+        Assertion::isInstanceOf(
+            $commandHandler,
+            'Matthias\SimpleBus\Command\CommandHandler'
+        );
 
         return $commandHandler;
     }

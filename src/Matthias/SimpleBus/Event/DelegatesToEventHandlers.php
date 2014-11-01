@@ -30,11 +30,16 @@ class DelegatesToEventHandlers extends RemembersNext implements EventBus
 
     private function resolveEventHandlers(Event $event)
     {
-        return array_map(
-            function ($eventHandlerId) {
-                $eventHandler = $this->container->get($eventHandlerId);
+        $container = $this->container;
 
-                Assertion::isInstanceOf($eventHandler, EventHandler::class);
+        return array_map(
+            function ($eventHandlerId) use ($container) {
+                $eventHandler = $container->get($eventHandlerId);
+
+                Assertion::isInstanceOf(
+                    $eventHandler,
+                    'Matthias\SimpleBus\Event\EventHandler'
+                );
 
                 return $eventHandler;
             },
