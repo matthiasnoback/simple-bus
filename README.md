@@ -51,7 +51,7 @@ namespace Matthias\App;
 use Matthias\SimpleBus\Command\Command;
 use Matthias\SimpleBus\Command\CommandHandler;
 
-class TestCommandHandler implements TestCommandHandler
+class TestCommandHandler implements CommandHandler
 {
     public function handle(Command $comment)
     {
