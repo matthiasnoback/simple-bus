@@ -1,13 +1,25 @@
 services:
     matthias_command_bus.delegating_command_bus:
-        class: Matthias\SimpleBus\Command\DelegatesToCommandHandlers
+        class: Matthias\SimpleBus\Command\Handler\DelegatesToCommandHandlers
+        public: false
+        arguments:
+            - @matthias_command_bus.command_handler_resolver
+        tags:
+            - { name: command_bus, priority: -1000 }
+
+    matthias_command_bus.command_handler_resolver:
+        class: Matthias\SimpleBus\Command\Handler\LazyLoadingCommandHandlerResolver
+        public: false
+        arguments:
+            - @matthias_command_bus.invokable_service_locator
+            # collection of command handler services, will be populated using RegisterHandlerPass
+            - []
+
+    matthias_command_bus.invokable_service_locator:
+        class: Matthias\SimpleBus\SymfonyBundle\DependencyInjection\InvokableServiceLocator
         public: false
         arguments:
             - @service_container
-            # collection of command handler services, will be populated using RegisterHandlerPass
-            - []
-        tags:
-            - { name: command_bus, priority: -1000 }
 
     matthias_command_bus.finishes_command_before_handling_next:
         class: Matthias\SimpleBus\Command\FinishesCommandBeforeHandlingNext

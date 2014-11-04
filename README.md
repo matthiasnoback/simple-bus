@@ -49,7 +49,7 @@ Then create a command handler:
 namespace Matthias\App;
 
 use Matthias\SimpleBus\Command\Command;
-use Matthias\SimpleBus\Command\CommandHandler;
+use Matthias\SimpleBus\Command\Handler\CommandHandler;
 
 class TestCommandHandler implements CommandHandler
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace Matthias\SimpleBus\Command;
+namespace Matthias\SimpleBus\Command\Handler;
+
+use Matthias\SimpleBus\Command\Command;
 
 interface CommandHandler
 {

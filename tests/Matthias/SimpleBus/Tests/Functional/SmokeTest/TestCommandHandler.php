@@ -4,7 +4,7 @@ namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Doctrine\ORM\EntityManager;
 use Matthias\SimpleBus\Command\Command;
-use Matthias\SimpleBus\Command\CommandHandler;
+use Matthias\SimpleBus\Command\Handler\CommandHandler;
 use Matthias\SimpleBus\Tests\Functional\SmokeTest\Entity\TestEntity;
 
 class TestCommandHandler implements CommandHandler

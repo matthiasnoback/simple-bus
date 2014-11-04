@@ -1,29 +1,22 @@
 <?php
 
-namespace Matthias\SimpleBus\Command;
+namespace Matthias\SimpleBus\Command\Handler;
 
 use Assert\Assertion;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Matthias\SimpleBus\Command\Command;
 
-class DelegatesToCommandHandlers extends RemembersNext implements CommandBus
+class LazyLoadingCommandHandlerResolver implements CommandHandlerResolver
 {
-    private $container;
     private $commandHandlers;
+    private $serviceLocator;
 
-    public function __construct(ContainerInterface $container, array $commandHandlers = array())
+    public function __construct(callable $serviceLocator, array $commandHandlers)
     {
-        $this->container = $container;
         $this->commandHandlers = $commandHandlers;
+        $this->serviceLocator = $serviceLocator;
     }
 
-    public function handle(Command $command)
-    {
-        $this->resolveCommandHandler($command)->handle($command);
-
-        $this->next($command);
-    }
-
-    private function resolveCommandHandler(Command $command)
+    public function resolve(Command $command)
     {
         Assertion::string(
             $command->name(),
@@ -42,10 +35,12 @@ class DelegatesToCommandHandlers extends RemembersNext implements CommandBus
             );
         }
 
-        $commandHandler = $this->container->get($this->commandHandlers[$command->name()]);
+        $serviceId = $this->commandHandlers[$command->name()];
+        $commandHandler = call_user_func($this->serviceLocator, $serviceId);
+
         Assertion::isInstanceOf(
             $commandHandler,
-            'Matthias\SimpleBus\Command\CommandHandler'
+            'Matthias\SimpleBus\Command\Handler\CommandHandler'
         );
 
         return $commandHandler;

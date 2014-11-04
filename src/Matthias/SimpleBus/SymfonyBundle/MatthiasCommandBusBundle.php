@@ -21,7 +21,7 @@ class MatthiasCommandBusBundle extends Bundle
 
         $container->addCompilerPass(
             new RegisterHandlers(
-                'matthias_command_bus.delegating_command_bus',
+                'matthias_command_bus.command_handler_resolver',
                 'command_handler',
                 'handles',
                 false
