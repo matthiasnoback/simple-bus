@@ -1,5 +1,7 @@
 # SimpleBus
 
+[![Build Status](https://travis-ci.org/matthiasnoback/simple-bus.svg?branch=master)](https://travis-ci.org/matthiasnoback/simple-bus)
+
 By Matthias Noback
 
 **Warning: this has not been used in a production environment. Still, it should be good to use. If you don't think it is, please [create an issue](https://github.com/matthiasnoback/simple-bus/issues)**
