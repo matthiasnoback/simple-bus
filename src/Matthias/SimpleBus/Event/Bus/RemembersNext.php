@@ -4,7 +4,7 @@ namespace Matthias\SimpleBus\Event\Bus;
 
 use Matthias\SimpleBus\Event\Event;
 
-abstract class RemembersNext implements EventBus
+trait RemembersNext
 {
     private $next;
 

@@ -4,8 +4,10 @@ namespace Matthias\SimpleBus\Command\Bus;
 
 use Matthias\SimpleBus\Command\Command;
 
-class FinishesCommandBeforeHandlingNext extends RemembersNext
+class FinishesCommandBeforeHandlingNext implements CommandBus
 {
+    use RemembersNext;
+
     private $queue = array();
     private $isHandling = false;
 

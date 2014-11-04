@@ -3,11 +3,14 @@
 namespace Matthias\SimpleBus\DoctrineORM\CommandBus;
 
 use Doctrine\ORM\EntityManager;
+use Matthias\SimpleBus\Command\Bus\CommandBus;
 use Matthias\SimpleBus\Command\Command;
 use Matthias\SimpleBus\Command\Bus\RemembersNext;
 
-class WrapsNextCommandInTransaction extends RemembersNext
+class WrapsNextCommandInTransaction implements CommandBus
 {
+    use RemembersNext;
+
     private $entityManager;
 
     public function __construct(EntityManager $entityManager)

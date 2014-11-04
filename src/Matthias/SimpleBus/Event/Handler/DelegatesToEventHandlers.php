@@ -6,8 +6,10 @@ use Matthias\SimpleBus\Event\Event;
 use Matthias\SimpleBus\Event\Bus\EventBus;
 use Matthias\SimpleBus\Event\Bus\RemembersNext;
 
-class DelegatesToEventHandlers extends RemembersNext implements EventBus
+class DelegatesToEventHandlers implements EventBus
 {
+    use RemembersNext;
+
     private $eventHandlersResolver;
 
     public function __construct(EventHandlersResolver $eventHandlersResolver)

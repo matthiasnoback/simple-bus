@@ -6,8 +6,10 @@ use Matthias\SimpleBus\Command\Bus;
 use Matthias\SimpleBus\Command\Command;
 use Matthias\SimpleBus\Command\Handler\CommandHandlerResolver;
 
-class DelegatesToCommandHandlers extends RemembersNext implements Bus\CommandBus
+class DelegatesToCommandHandlers implements CommandBus
 {
+    use RemembersNext;
+
     private $commandHandlerResolver;
 
     public function __construct(CommandHandlerResolver $commandHandlerResolver)

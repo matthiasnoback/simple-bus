@@ -4,7 +4,7 @@ namespace Matthias\SimpleBus\Command\Bus;
 
 use Matthias\SimpleBus\Command\Command;
 
-abstract class RemembersNext implements CommandBus
+trait RemembersNext
 {
     private $next;
 

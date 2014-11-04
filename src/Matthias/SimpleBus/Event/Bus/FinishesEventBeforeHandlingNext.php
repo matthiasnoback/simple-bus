@@ -4,8 +4,10 @@ namespace Matthias\SimpleBus\Event\Bus;
 
 use Matthias\SimpleBus\Event\Event;
 
-class FinishesEventBeforeHandlingNext extends RemembersNext implements EventBus
+class FinishesEventBeforeHandlingNext implements EventBus
 {
+    use RemembersNext;
+
     private $queue = array();
     private $isHandling = false;
 

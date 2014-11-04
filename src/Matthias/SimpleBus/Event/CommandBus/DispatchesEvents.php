@@ -8,8 +8,10 @@ use Matthias\SimpleBus\Command\Bus\RemembersNext;
 use Matthias\SimpleBus\Event\Bus\EventBus;
 use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
 
-class DispatchesEvents extends RemembersNext implements CommandBus
+class DispatchesEvents implements CommandBus
 {
+    use RemembersNext;
+
     private $eventProvider;
     private $eventBus;
 
