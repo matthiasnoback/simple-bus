@@ -170,7 +170,7 @@ To create an event handler, first create the class:
 namespace Matthias\SimpleBus\Tests\Functional\SimpleBusBundleTest;
 
 use Matthias\SimpleBus\Event\Event;
-use Matthias\SimpleBus\Event\EventHandler;
+use Matthias\SimpleBus\Event\Handler\EventHandler;
 
 class TestEntityCreatedEventHandler implements EventHandler
 {
