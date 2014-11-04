@@ -2,7 +2,7 @@
 
 namespace Matthias\SimpleBus\Tests\Event\Provider;
 
-use Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviderCollectors;
+use Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviders;
 
 class AggregatesMultipleEventProviderCollectorsTest extends \PHPUnit_Framework_TestCase
 {
@@ -11,27 +11,27 @@ class AggregatesMultipleEventProviderCollectorsTest extends \PHPUnit_Framework_T
      */
     public function it_collects_event_providers_from_several_other_collectors()
     {
-        $eventProvider1 = $this->createDummyEventProvider();
-        $eventProvider2 = $this->createDummyEventProvider();
+        $event1 = $this->createDummyEvent();
+        $event2 = $this->createDummyEvent();
 
-        $aggregator = new AggregatesMultipleEventProviderCollectors(
+        $aggregator = new AggregatesMultipleEventProviders(
             array(
-                new EventProviderCollectorStub(array($eventProvider1)),
-                new EventProviderCollectorStub(array($eventProvider2))
+                new EventProviderStub(array($event1)),
+                new EventProviderStub(array($event2))
             )
         );
 
         $this->assertSame(
             array(
-                $eventProvider1,
-                $eventProvider2
+                $event1,
+                $event2
             ),
-            $aggregator->collectedEventProviders()
+            $aggregator->releaseEvents()
         );
     }
 
-    private function createDummyEventProvider()
+    private function createDummyEvent()
     {
-        return $this->getMock('Matthias\SimpleBus\Event\Provider\ProvidesEvents');
+        return $this->getMock('Matthias\SimpleBus\Event\Event');
     }
 }

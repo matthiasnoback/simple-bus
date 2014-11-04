@@ -3,8 +3,8 @@ services:
         class: Matthias\SimpleBus\Event\FinishesEventBeforeHandlingNext
         public: false
 
-    matthias_event_bus.aggregates_multiple_event_provider_collectors:
-        class: Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviderCollectors
+    matthias_event_bus.aggregates_multiple_event_providers:
+        class: Matthias\SimpleBus\Event\Provider\AggregatesMultipleEventProviders
         arguments:
             # collection of CollectsEventProviders, will be populated using RegisterEventProviderCollectors
             - []
@@ -34,7 +34,7 @@ services:
         class: Matthias\SimpleBus\Event\CommandBus\DispatchesEvents
         public: false
         arguments:
-            - @matthias_event_bus.aggregates_multiple_event_provider_collectors
+            - @matthias_event_bus.aggregates_multiple_event_providers
             - @matthias_event_bus.delegates_to_event_handlers
         tags:
             - { name: command_bus, priority: 200 }

@@ -12,9 +12,9 @@ services:
         tags:
             - { name: command_bus, priority: 100 }
 
-    matthias_doctrine_orm_event_bus_bridge.collects_event_providing_entities:
-        class: Matthias\SimpleBus\DoctrineORM\CollectsEventProvidingEntities
+    matthias_doctrine_orm_event_bus_bridge.aggregates_multiple_event_providers:
+        class: Matthias\SimpleBus\DoctrineORM\CollectsEventFromEntities
         public: false
         tags:
             - { name: doctrine.event_subscriber }
-            - { name: event_provider_collector }
+            - { name: event_provider }

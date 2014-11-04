@@ -3,7 +3,7 @@
 namespace Matthias\SimpleBus\SymfonyBundle;
 
 use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\ConfigureBuses;
-use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\RegisterEventProviderCollectors;
+use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\RegisterEventProviders;
 use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\Compiler\RegisterHandlers;
 use Matthias\SimpleBus\SymfonyBundle\DependencyInjection\EventBusExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -30,9 +30,9 @@ class MatthiasEventBusBundle extends Bundle
         );
 
         $container->addCompilerPass(
-            new RegisterEventProviderCollectors(
-                'matthias_event_bus.aggregates_multiple_event_provider_collectors',
-                'event_provider_collector'
+            new RegisterEventProviders(
+                'matthias_event_bus.aggregates_multiple_event_providers',
+                'event_provider'
             )
         );
 

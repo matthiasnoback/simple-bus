@@ -5,12 +5,11 @@ namespace Matthias\SimpleBus\DoctrineORM;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Matthias\SimpleBus\Event\Provider\CollectsEventProviders;
 use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
 
-class CollectsEventProvidingEntities implements EventSubscriber, CollectsEventProviders
+class CollectsEventFromEntities implements EventSubscriber, ProvidesEvents
 {
-    private $collectedEventProviders = array();
+    private $collectedEvents = array();
 
     public function getSubscribedEvents()
     {
@@ -23,39 +22,41 @@ class CollectsEventProvidingEntities implements EventSubscriber, CollectsEventPr
 
     public function postPersist(LifecycleEventArgs $event)
     {
-        $this->collectEntity($event);
+        $this->collectEventsFromEntity($event);
     }
 
     public function postUpdate(LifecycleEventArgs $event)
     {
-        $this->collectEntity($event);
+        $this->collectEventsFromEntity($event);
     }
 
     public function postRemove(LifecycleEventArgs $event)
     {
-        $this->collectEntity($event);
+        $this->collectEventsFromEntity($event);
     }
 
-    public function collectedEventProviders()
+    public function releaseEvents()
     {
-        $collectedEventProviders = $this->collectedEventProviders;
+        $events = $this->collectedEvents;
 
         $this->clear();
 
-        return $collectedEventProviders;
+        return $events;
     }
 
-    private function collectEntity(LifecycleEventArgs $event)
+    private function collectEventsFromEntity(LifecycleEventArgs $event)
     {
         $entity = $event->getEntity();
 
         if ($entity instanceof ProvidesEvents) {
-            $this->collectedEventProviders[] = $entity;
+            foreach ($entity->releaseEvents() as $event) {
+                $this->collectedEvents[] = $event;
+            }
         }
     }
 
     private function clear()
     {
-        $this->collectedEventProviders = array();
+        $this->collectedEvents = array();
     }
 }
