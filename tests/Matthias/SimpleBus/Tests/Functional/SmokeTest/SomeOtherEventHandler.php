@@ -3,7 +3,7 @@
 namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Matthias\SimpleBus\Event\Event;
-use Matthias\SimpleBus\Event\EventHandler;
+use Matthias\SimpleBus\Event\Handler\EventHandler;
 
 class SomeOtherEventHandler implements EventHandler
 {

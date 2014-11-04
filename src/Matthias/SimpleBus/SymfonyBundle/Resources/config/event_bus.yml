@@ -10,14 +10,25 @@ services:
             - []
 
     matthias_event_bus.delegates_to_event_handlers:
-        class: Matthias\SimpleBus\Event\DelegatesToEventHandlers
+        class: Matthias\SimpleBus\Event\Handler\DelegatesToEventHandlers
+        arguments:
+            - @matthias_event_bus.event_handlers_resolver
+        tags:
+            - { name: event_bus }
+
+    matthias_event_bus.event_handlers_resolver:
+        class: Matthias\SimpleBus\Event\Handler\LazyLoadingEventHandlersResolver
+        public: false
+        arguments:
+            - @matthias_event_bus.invokable_service_locator
+            # collection of event handler services ids, will be populated using RegisterHandlers
+            - []
+
+    matthias_event_bus.invokable_service_locator:
+        class: Matthias\SimpleBus\SymfonyBundle\DependencyInjection\InvokableServiceLocator
         public: false
         arguments:
             - @service_container
-            # collection of event handler services, will be populated using RegisterHandlers
-            - []
-        tags:
-            - { name: event_bus }
 
     matthias_event_bus.event_dispatching_command_bus:
         class: Matthias\SimpleBus\Event\CommandBus\DispatchesEvents

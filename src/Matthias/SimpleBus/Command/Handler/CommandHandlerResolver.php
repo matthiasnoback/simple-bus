@@ -9,7 +9,7 @@ interface CommandHandlerResolver
     /**
      * @param Command $command
      * @return CommandHandler
-     * @throws \LogicException
+     * @throws \InvalidArgumentException
      */
     public function resolve(Command $command);
 }

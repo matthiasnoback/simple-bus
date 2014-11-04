@@ -4,7 +4,7 @@ namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
 use Matthias\SimpleBus\Command\CommandBus;
 use Matthias\SimpleBus\Event\Event;
-use Matthias\SimpleBus\Event\EventHandler;
+use Matthias\SimpleBus\Event\Handler\EventHandler;
 
 class TestEntityCreatedEventHandler implements EventHandler
 {

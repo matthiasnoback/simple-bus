@@ -38,7 +38,7 @@ class MatthiasEventBusBundle extends Bundle
 
         $container->addCompilerPass(
             new RegisterHandlers(
-                'matthias_event_bus.delegates_to_event_handlers',
+                'matthias_event_bus.event_handlers_resolver',
                 'event_handler',
                 'handles',
                 true

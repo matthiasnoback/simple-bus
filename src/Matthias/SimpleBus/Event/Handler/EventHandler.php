@@ -1,6 +1,8 @@
 <?php
 
-namespace Matthias\SimpleBus\Event;
+namespace Matthias\SimpleBus\Event\Handler;
+
+use Matthias\SimpleBus\Event\Event;
 
 interface EventHandler
 {
