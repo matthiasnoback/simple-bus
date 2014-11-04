@@ -3,12 +3,12 @@
 namespace Matthias\SimpleBus\Tests\Command;
 
 use Matthias\SimpleBus\Command\Command;
-use Matthias\SimpleBus\Command\CommandBus;
-use Matthias\SimpleBus\Command\FinishesCommandBeforeHandlingNext;
+use Matthias\SimpleBus\Command\Bus\CommandBus;
+use Matthias\SimpleBus\Command\Bus\FinishesCommandBeforeHandlingNext;
 
 class FinishesCommandBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var FinishesCommandBeforeHandlingNext */
+    /** @var \Matthias\SimpleBus\Command\Bus\FinishesCommandBeforeHandlingNext */
     private $commandBus;
 
     /** @var \PHPUnit_Framework_MockObject_MockObject|CommandBus */
@@ -77,7 +77,7 @@ class FinishesCommandBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 
     private function mockCommandBus()
     {
-        return $this->getMock('Matthias\SimpleBus\Command\CommandBus');
+        return $this->getMock('Matthias\SimpleBus\Command\Bus\CommandBus');
     }
 
     /**

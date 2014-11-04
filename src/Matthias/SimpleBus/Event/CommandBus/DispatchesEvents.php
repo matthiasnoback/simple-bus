@@ -3,12 +3,12 @@
 namespace Matthias\SimpleBus\Event\CommandBus;
 
 use Matthias\SimpleBus\Command\Command;
-use Matthias\SimpleBus\Command\CommandBus;
-use Matthias\SimpleBus\Command\RemembersNext as CommandBusRemembersNext;
-use Matthias\SimpleBus\Event\EventBus;
+use Matthias\SimpleBus\Command\Bus\CommandBus;
+use Matthias\SimpleBus\Command\Bus\RemembersNext;
+use Matthias\SimpleBus\Event\Bus\EventBus;
 use Matthias\SimpleBus\Event\Provider\ProvidesEvents;
 
-class DispatchesEvents extends CommandBusRemembersNext implements CommandBus
+class DispatchesEvents extends RemembersNext implements CommandBus
 {
     private $eventProvider;
     private $eventBus;

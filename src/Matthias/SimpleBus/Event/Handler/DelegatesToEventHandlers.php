@@ -3,9 +3,8 @@
 namespace Matthias\SimpleBus\Event\Handler;
 
 use Matthias\SimpleBus\Event\Event;
-use Matthias\SimpleBus\Event\EventBus;
-use Matthias\SimpleBus\Event\Handler\EventHandler;
-use Matthias\SimpleBus\Event\RemembersNext;
+use Matthias\SimpleBus\Event\Bus\EventBus;
+use Matthias\SimpleBus\Event\Bus\RemembersNext;
 
 class DelegatesToEventHandlers extends RemembersNext implements EventBus
 {

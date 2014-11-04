@@ -5,7 +5,7 @@ services:
         public: false
 
     matthias_doctrine_orm_event_bus_bridge.wraps_next_command_in_transaction:
-        class: Matthias\SimpleBus\DoctrineORM\WrapsNextCommandInTransaction
+        class: Matthias\SimpleBus\DoctrineORM\CommandBus\WrapsNextCommandInTransaction
         public: false
         arguments:
             - @matthias_doctrine_orm_event_bus_bridge.entity_manager
@@ -13,7 +13,7 @@ services:
             - { name: command_bus, priority: 100 }
 
     matthias_doctrine_orm_event_bus_bridge.aggregates_multiple_event_providers:
-        class: Matthias\SimpleBus\DoctrineORM\CollectsEventFromEntities
+        class: Matthias\SimpleBus\DoctrineORM\EventListener\CollectsEventFromEntities
         public: false
         tags:
             - { name: doctrine.event_subscriber }

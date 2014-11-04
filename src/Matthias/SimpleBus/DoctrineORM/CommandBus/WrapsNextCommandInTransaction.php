@@ -1,10 +1,10 @@
 <?php
 
-namespace Matthias\SimpleBus\DoctrineORM;
+namespace Matthias\SimpleBus\DoctrineORM\CommandBus;
 
 use Doctrine\ORM\EntityManager;
 use Matthias\SimpleBus\Command\Command;
-use Matthias\SimpleBus\Command\RemembersNext;
+use Matthias\SimpleBus\Command\Bus\RemembersNext;
 
 class WrapsNextCommandInTransaction extends RemembersNext
 {

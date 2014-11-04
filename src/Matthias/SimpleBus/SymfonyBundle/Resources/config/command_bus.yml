@@ -1,6 +1,6 @@
 services:
     matthias_command_bus.delegating_command_bus:
-        class: Matthias\SimpleBus\Command\Handler\DelegatesToCommandHandlers
+        class: Matthias\SimpleBus\Command\Bus\DelegatesToCommandHandlers
         public: false
         arguments:
             - @matthias_command_bus.command_handler_resolver
@@ -22,7 +22,7 @@ services:
             - @service_container
 
     matthias_command_bus.finishes_command_before_handling_next:
-        class: Matthias\SimpleBus\Command\FinishesCommandBeforeHandlingNext
+        class: Matthias\SimpleBus\Command\Bus\FinishesCommandBeforeHandlingNext
         public: false
         tags:
             - { name: command_bus, priority: 1000 }

@@ -3,8 +3,8 @@
 namespace Matthias\SimpleBus\Tests\Event;
 
 use Matthias\SimpleBus\Event\Event;
-use Matthias\SimpleBus\Event\EventBus;
-use Matthias\SimpleBus\Event\FinishesEventBeforeHandlingNext;
+use Matthias\SimpleBus\Event\Bus\EventBus;
+use Matthias\SimpleBus\Event\Bus\FinishesEventBeforeHandlingNext;
 
 class FinishesEventBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class FinishesEventBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->eventBus = new FinishesEventBeforeHandlingNext();
+        $this->eventBus = new \Matthias\SimpleBus\Event\Bus\FinishesEventBeforeHandlingNext();
         $this->next = $this->mockEventBus();
         $this->eventBus->setNext($this->next);
     }
@@ -75,7 +75,7 @@ class FinishesEventBeforeHandlingNextTest extends \PHPUnit_Framework_TestCase
 
     private function mockEventBus()
     {
-        return $this->getMock('Matthias\SimpleBus\Event\EventBus');
+        return $this->getMock('Matthias\SimpleBus\Event\Bus\EventBus');
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Matthias\SimpleBus\Tests\Functional\SmokeTest;
 
-use Matthias\SimpleBus\Command\CommandBus;
+use Matthias\SimpleBus\Command\Bus\CommandBus;
 use Matthias\SimpleBus\Event\Event;
 use Matthias\SimpleBus\Event\Handler\EventHandler;
 

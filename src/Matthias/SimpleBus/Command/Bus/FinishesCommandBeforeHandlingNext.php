@@ -1,6 +1,8 @@
 <?php
 
-namespace Matthias\SimpleBus\Command;
+namespace Matthias\SimpleBus\Command\Bus;
+
+use Matthias\SimpleBus\Command\Command;
 
 class FinishesCommandBeforeHandlingNext extends RemembersNext
 {

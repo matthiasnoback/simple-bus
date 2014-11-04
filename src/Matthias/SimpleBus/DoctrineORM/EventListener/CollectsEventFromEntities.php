@@ -1,6 +1,6 @@
 <?php
 
-namespace Matthias\SimpleBus\DoctrineORM;
+namespace Matthias\SimpleBus\DoctrineORM\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;

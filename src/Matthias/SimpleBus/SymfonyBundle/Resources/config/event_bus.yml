@@ -1,6 +1,6 @@
 services:
     matthias_event_bus.events.finishes_event_before_handling_next:
-        class: Matthias\SimpleBus\Event\FinishesEventBeforeHandlingNext
+        class: Matthias\SimpleBus\Event\Bus\FinishesEventBeforeHandlingNext
         public: false
 
     matthias_event_bus.aggregates_multiple_event_providers:

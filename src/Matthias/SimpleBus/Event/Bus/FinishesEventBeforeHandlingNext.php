@@ -1,6 +1,8 @@
 <?php
 
-namespace Matthias\SimpleBus\Event;
+namespace Matthias\SimpleBus\Event\Bus;
+
+use Matthias\SimpleBus\Event\Event;
 
 class FinishesEventBeforeHandlingNext extends RemembersNext implements EventBus
 {
