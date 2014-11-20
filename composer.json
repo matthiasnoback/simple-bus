@@ -1,7 +1,7 @@
 {
     "name": "matthiasnoback/simple-bus",
     "type": "library",
-    "description": "A simple command bus and event handler implementation for Symfony and Doctrine ORM",
+    "description": "This package has been split and moved to the SimpleBus organization",
     "keywords": ["symfony2", "command", "event"],
     "homepage": "http://github.com/matthiasnoback/simple-bus",
     "license": "MIT",
